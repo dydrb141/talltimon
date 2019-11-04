@@ -16,7 +16,7 @@
 * [WEB](web/README.md)
   * [HTTP의 이해](web/http.md)
   * [WEB Cache](web/web-cache.md)
-  * [HTTP 동작 방식](web/http-1.md)
+  * [HTTPS 동작 방식](web/http-1.md)
   * [WEB Browser](web/web-browser.md)
   * [HTTP 2.0?](web/http-2.0.md)
 * [스프링](undefined/README.md)
