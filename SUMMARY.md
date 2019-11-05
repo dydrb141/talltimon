@@ -26,4 +26,5 @@
 * [DataBase](database.md)
 * [JPA](jpa/README.md)
   * [JPA 기본](jpa/jpa-1.md)
+  * [연관관계 매핑](jpa/undefined.md)
 
