@@ -24,5 +24,6 @@
   * [SpringBoot](undefined/springboot.md)
   * [Spring Batch](undefined/spring-batch.md)
 * [DataBase](database.md)
-* [JPA](jpa.md)
+* [JPA](jpa/README.md)
+  * [JPA 기본](jpa/jpa-1.md)
 
