@@ -6,7 +6,7 @@
 
 실제 사용하든 사용하지 않든 데이터베이스에서 조회함.
 
-```java
+``` java
 Member member = em.find(Member.class, "member1");
 ```
 
