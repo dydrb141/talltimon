@@ -28,4 +28,5 @@
   * [JPA 기본](jpa/jpa-1.md)
   * [연관관계 매핑](jpa/undefined.md)
   * [프록시와 연관관계 관리](jpa/undefined-1.md)
+  * [객체지향 쿼리 언어](jpa/undefined-2.md)
 
