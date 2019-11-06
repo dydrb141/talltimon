@@ -1,23 +1,68 @@
 # 프록시와 연관관계 관리
 
-## Getting Super Powers
+## 프록시
+지연로딩 : 엔티티가 실제 사용될 때까지 데이터베이스 조회를 지연하는 방법을 제공
+프록시 : 데이터베이스 조회를 지연할 수 있는 가짜 객체
 
-Becoming a super hero is a fairly straight forward process:
+실제 사용하든 사용하지 않든 데이터베이스에서 조회함.
 
+``` java
+Member member = em.find(Member.class, "member1");
 ```
-$ give me super-powers
+
+아래처럼 사용하면 실제 조회하지 않고 프록시 객체 반환
+``` java
+Member member = em.getReference(Member.class, "member1");
 ```
 
-{% hint style="info" %}
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.
-{% endhint %}
+### 프록시 특징
+프록시 객체는 실제 객체에 대한 참조를 보관
+사용하는 입장에서는 실제 객체인지 가짜인지 구분하지 않고 사용 가능
 
-Once you're strong enough, save the world:
+#### 프록시 초기화 과정
+1. 프록시 객체에 member.getName을 호출해서 실제 데이터 조회
+2. 프록시 객체는 실제 엔티티가 생성되어 있지 않으면 영속성 컨텍스트에 실제 엔티티 생성 요청 함 이것을 초기화 라고 함
+3. 영속성 컨텍스트는 데이터 베이스를 조회해 실제 엔티티 객체 생성
+4. 프록시 객체는 실제 엔티티 객체의 참조를 Member target멤버변수에 보관
+5. 프록시 객체는 실제 엔티티 객체의 getName()을 호출해서 결과 반환
 
-```
-// Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
-```
+
+### 즉시로딩과 지연로딩
+
+#### 즉시로딩 (EAGER LOADING)
+엔티티를 조회할 때 연관된 엔티티도 함께 조회
+@ManyToOne의 fetch 속성을 FetchType.EAGER로 지정
+회원을 조회하는 순간 팀도 함께 조회됨
+자주 사용되는 객체일때 사용
+
+#### NULL 제약조건과 JPA 조인 전략
+즉시 로딩시 JPA는 내부 조인이 아닌 외부 조인을 사용한다.
+왜냐하면 NULLABLE 이기 때문이다. NOT NULL제약조건을 걸어줘서 NULL값을 허용하지 않는다고 알려주면 JPA는 내부 조인을 사용한다.
+
+@JoinColumn(name = "TEAM_ID", nullable= false)
+
+#### 지연로딩 (LAZY LOADING)
+@ManyToOne의 fetch 속성을 FetchType.LAZY로 설정
+이렇게 하면 회원만 조회하고 팀은 조회하지 않고 team 멤버 변수에 프록시 객체를 넣어둔다.
+가끔 사용될때 사
+
+**컬렉션 래퍼 : 하이버네이트는 엔티티를 영속 상태로 만들때 엔티티에 컬렉션이 있으면 컬렉션을 추적하고 관리할 목적으로 원본 컬렉션을 하이버 네이트가 제공하는
+  내장 컬렉션으로 변경**
+  
+   
+모든 연관관계에서 지연 로딩을 추천함. 그리고 실제 사용하는 상황을 보고 꼭 필요한 곳에만 즉시 로딩을 사용
+
+컬렉션에 FetchType.EAGER 사용시 주의점
+
+1. 컬렉션을 하나 이상 즉시 로딩은 권장 하지 않음
+ - 일대다 조인이기때문에 다 쪽에 있는 수만큼 데이터가 증가 
+ - 2개 이상 조인하면 문제가 됨 N * M 
+2. 컬렉션 즉시 로딩은 항상 외부 조인을 사용
+ 
+### 영속성 전이 :CASCADE
+연관된 엔티티도 함께 영속 상태로 만들고 싶을때 사용
+
+CasecadeType.PERSIST : 부보를 영속화 할때 자식들도 함께 영속화
 
 
 

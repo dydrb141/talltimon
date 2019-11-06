@@ -18,7 +18,7 @@ public class Member {
 }
 ```
 
-```
+``` java
 @Entity
 public class Team {
     @Id
@@ -35,7 +35,7 @@ public class Team {
 회원 <-> 팀
 
 
-```
+``` java
 @Entity
 public class Team {
     @Id
