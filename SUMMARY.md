@@ -29,4 +29,5 @@
   * [연관관계 매핑](jpa/undefined.md)
   * [프록시와 연관관계 관리](jpa/undefined-1.md)
   * [객체지향 쿼리 언어](jpa/undefined-2.md)
+  * [웹 애플리케이션 영속성 관리](jpa/undefined-3.md)
 
