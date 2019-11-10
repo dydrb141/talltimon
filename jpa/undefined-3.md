@@ -48,37 +48,37 @@
 
 Order.member 를 즉시로딩 설정 했다고 가정
 
-{% code-tabs %}
-{% code-tabs-item title="Order 즉시 로딩 그래프 탐색" %}
+{% tabs %}
+{% tab title="Order 즉시 로딩 그래프 탐색" %}
 ```sql
 Order order = em.find(Order.class, 1L);
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="실행 결과" %}
+{% tabs %}
+{% tab title="실행 결과" %}
 ```sql
 select o.*, m.*
 from Oder o 
 left outer join Member m o.MEMBER_ID = m.MEMBER_ID
 where o.id=1
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 위 처럼 엔티티 그래프 탐색에는 문제가 없다. 하지만 JPQL을 사용할 때는 문제가 발생한다.
 
-{% code-tabs %}
-{% code-tabs-item title="Order JPQL" %}
+{% tabs %}
+{% tab title="Order JPQL" %}
 ```sql
 List<Order> orders = em.createQuery("select o from Order o", Order.class).getResultList();
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="Order JPQL 실행결과" %}
+{% tabs %}
+{% tab title="Order JPQL 실행결과" %}
 ```sql
 select * from Order // JPQL로 실행된 SQL 
 select * from Member where id=? // EAGER로 실행된 SQL
@@ -86,8 +86,8 @@ select * from Member where id=? // EAGER로 실행된 SQL
 select * from Member where id=? // EAGER로 실행된 SQL
 select * from Member where id=? // EAGER로 실행된 SQL
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 JPQL을 사용할 때는 글로벌 패치 전략을 참고하지 않고 JPQL 자체만 사용
 
