@@ -39,11 +39,11 @@ MIME\(Multipurpose Internet Mail Extensions\) 원래 전자우편의 인코딩 �
 
 _**MIME 헤더 공통**_ **Cache-Control**: 캐시가 동작하는 조건을 지정하는 지시문 Connection: 클라이언트와 웹 서버간 네트워크 연결 시에 대한 Keepalive 여부 지정 Date:현재 날짜 표시
 
-_**MIME 요청 전용 헤더 \(중요한것만\)**_ **Accept**: 클라이언트\(브라우저\)가 응답으로 받을 수 있는 MIME타입을 지정 Accept-Encoding:클라이언트가 받을 수 있는 본문 인코딩 
+_**MIME 요청 전용 헤더 \(중요한것만\)**_ **Accept**: 클라이언트\(브라우저\)가 응답으로 받을 수 있는 MIME타입을 지정 Accept-Encoding:클라이언트가 받을 수 있는 본문 인코딩
 
-**Authorization**: URI에 클라이언트가 데이터에 접근할 수 있는 권한을 제공. HTTP가 일반적으로 사용하는 권한 계획은 BASIC이다. 
+**Authorization**: URI에 클라이언트가 데이터에 접근할 수 있는 권한을 제공. HTTP가 일반적으로 사용하는 권한 계획은 BASIC이다.
 
-**Cookie**: 서버에서 설정한 데이터가 사용자 PC에 저장되어 요청 간에도 해당 데이터를 서버 측면에서 공유 Host: 호스트명과 URI포트 번호로 구성 
+**Cookie**: 서버에서 설정한 데이터가 사용자 PC에 저장되어 요청 간에도 해당 데이터를 서버 측면에서 공유 Host: 호스트명과 URI포트 번호로 구성
 
 **User-Agent**: 클라이언트 브라우저에 대한 식별 정보 전송
 
@@ -65,7 +65,7 @@ _**응답 코드 목록**_
 * 4xx\(Client Error\): 요청 실패, 분법상 오류가 있어서 서버가 요청사항을 이해하지 못함. 
 * 5xx\(Internal Server Error\):서버 측의 오류로 올바른 요청을 처리할 수 없다.
 
-_**응답전용 MIME 헤더**_ ****
+_**응답전용 MIME 헤더**_ _\*\*_
 
 * Content-Encoding: 본문을 전송할 때 사용할 인코딩 체계를 지정 
 * Content-Language: 전송될 본문에서 사용하는 언어를 지정 
@@ -81,7 +81,7 @@ Context-Length에 본문의 크기를 바이트 단위로 기록해서 수신측
 
 ### Chunked방식
 
-HTTP헤더인 Transfer-Encoding이 chunked값을 가지고 있음 본문의 크기를 알수 없을때 사용 JSP같은 경우 애플리케이션이 수행되기 시작하면서 HTTP응답이 생성됨 
+HTTP헤더인 Transfer-Encoding이 chunked값을 가지고 있음 본문의 크기를 알수 없을때 사용 JSP같은 경우 애플리케이션이 수행되기 시작하면서 HTTP응답이 생성됨
 
 송신 버퍼가 8K가 채워지면 네트워크에 응답을 보내기 시작하여 본문이 어느정도 크기인지 알수 없음 이럴때 chunk방식 사용
 
