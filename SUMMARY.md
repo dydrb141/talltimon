@@ -2,6 +2,8 @@
 
 * [Introduce](README.md)
 * [Java](java/README.md)
+  * [DesignPattern](java/designpattern.md)
+  * [Untitled](java/untitled-1.md)
   * [Java Basic2](java/untitled.md)
   * [Java Basic1](java/java-basic1.md)
 * [웹](undefined/README.md)
