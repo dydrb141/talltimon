@@ -2,7 +2,7 @@
 
 * [Introduce](README.md)
 * [Java](java/README.md)
-  * [Java Basic 2](java/untitled.md)
+  * [Java Basic2](java/untitled.md)
   * [Java Basic1](java/java-basic1.md)
 * [웹](undefined/README.md)
   * [HTTP이해](undefined/http.md)
