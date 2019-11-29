@@ -12,16 +12,17 @@
 
 같은 트랜잭션 안에서는 항상 같은 영속성 컨텍스트에 접근
 
-**스프링 트랜잭션에서 영속성 컨텍스트 동작 순서**
+ **스프링 트랜잭션에서 영속성 컨텍스트 동작 순서**  
 
 1. 비즈니스 로직에 @Transactional 선언 
 2. 스프링 AOP 동작 
 3. AOP는 대상 메소드를 호출하기전 트랜잭션 시작 
 4. 트랜잭션 커밋하면 JPA는 먼저 영속성 컨텍스트를 플러시해 변경된 내용을 db 반영후 db 커밋 
 5. 트랜잭션 종료
-6. 트랜잭션이 같다면 트랜잭션 매니저가 달라고 같은 영속성 컨텍스트 사용
-7. 트랜잭신이 다르면 영속성 컨텍스트가 다름, 다른 컨텍스트를 사용하므로 멀티 스레드 상황에 안전
-8. 보통 비즈니스 로직에서 트랜잭션이 종료 되기 때문에 Controller나 View 계층에서는 준영속 상태이다.
+
+* 트랜잭션이 같다면 트랜잭션 매니저가 달라고 같은 영속성 컨텍스트 사용 
+* 트랜잭신이 다르면 영속성 컨텍스트가 다름, 다른 컨텍스트를 사용하므로 멀티 스레드 상황에 안전
+* 보통 비즈니스 로직에서 트랜잭션이 종료 되기 때문에 Controller나 View 계층에서는 준영속 상태이다.
 
 #### 준영속 상태와 지연 로딩
 
@@ -47,37 +48,30 @@
 
 Order.member 를 즉시로딩 설정 했다고 가정
 
-{% tabs %}
-{% tab title="Order 즉시 로딩 그래프 탐색" %}
+{% code title="Order 즉시 로딩 그래프 탐색" %}
 ```sql
 Order order = em.find(Order.class, 1L);
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="실행 결과" %}
+{% code title="실행 결과" %}
 ```sql
 select o.*, m.*
 from Oder o 
 left outer join Member m o.MEMBER_ID = m.MEMBER_ID
 where o.id=1
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 위 처럼 엔티티 그래프 탐색에는 문제가 없다. 하지만 JPQL을 사용할 때는 문제가 발생한다.
 
-{% tabs %}
-{% tab title="Order JPQL" %}
+{% code title="Order JPQL" %}
 ```sql
 List<Order> orders = em.createQuery("select o from Order o", Order.class).getResultList();
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
-{% tabs %}
-{% tab title="Order JPQL 실행결과" %}
+{% code title="Order JPQL 실행결과" %}
 ```sql
 select * from Order // JPQL로 실행된 SQL 
 select * from Member where id=? // EAGER로 실행된 SQL
@@ -85,14 +79,13 @@ select * from Member where id=? // EAGER로 실행된 SQL
 select * from Member where id=? // EAGER로 실행된 SQL
 select * from Member where id=? // EAGER로 실행된 SQL
 ```
-{% endtab %}
-{% endtabs %}
+{% endcode %}
 
 JPQL을 사용할 때는 글로벌 패치 전략을 참고하지 않고 JPQL 자체만 사용
 
 코드 동작 순서
 
-1. select o from Order o JPQL을 분석해서 select  _from Order SQL 생성_
+1.  select o from Order o JPQL을 분석해서 select  _from Order SQL 생성_
 2. _db의 결과를 받아 order 엔티티 인스턴스들 생성_ 
 3. _Order.member의 글로벌 페치 전략이 즉시 로딩이기 때문에 연관된 member도 로딩해야함_ 
 4. _member를 연속성 컨텍스트에서 찾음_
@@ -110,7 +103,7 @@ View에서도 지연 로딩이 가능하도록 하는 것
 
 문제점
 
-컨트롤러나 뷰 같은 프리젠테이션 계층에서 엔티티를 변경할 수 있다.
+컨트롤러나 뷰 같은 프리젠테이션 계층에서 엔티티를 변경할 수 있다. 
 
 변경이 되면 db까지 영향을 줌 \(왜? 영속성 컨텍스트가 유지되기 때문\)
 
@@ -122,7 +115,7 @@ View에서도 지연 로딩이 가능하도록 하는 것
 
 #### 스프링 OSIV : 비즈니스 계층 트랜잭션
 
-동작 방식
+동작 방식 
 
 1. 클라이언트 요청이오면 서블릿 필터나 스프링 인터셉터에 영속성 컨텍스트를 생성, 단 트랜잭션은 시작하지 않음
 2. 서비스 계층에서 @Transactional로 트랜잭션을 시작할 때 1번에서 미리 생성해둔 영속성 컨텍스트를 찾아와 트랜잭션 시작
