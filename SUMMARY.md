@@ -38,5 +38,6 @@
 * [Untitled](untitled-2.md)
 * [ElasticSearch](elasticsearch/README.md)
   * [기초](elasticsearch/undefined.md)
-* [MongoDB](untitled-3.md)
+* [MongoDB](untitled-3/README.md)
+  * [spring-data-mongodb 연동시 설정 옵션 정보](untitled-3/spring-data-mongodb.md)
 
