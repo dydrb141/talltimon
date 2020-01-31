@@ -58,3 +58,26 @@ For situations that require atomicity of reads and writes to multiple documents 
 
 * 다중 다큐먼트에 대해 읽거나 쓰기 원자성이 필요한 상황에서 몽고디비는 다중 다큐먼트 트랜잭션을 지원함.
 
+In version 4.0, MongoDB supports multi-document transactions on replica sets.
+
+* 버전 4.0에서  몽고디비는 리플리카 셋에서  다중 다큐먼트 트랜잭션을 지원한다.
+
+In version 4.2, MongoDB introduces distributed transactions, which adds support for multi-document transactions on sharded clusters and incorporates the existing support for multi-document transactions on replica sets.
+
+* 버전 4.2에서 몽고디비는 분산 트랜잭션을 도입하여 분산 클러스터에 다중 다큐먼트 문서 트랜잭션 지원을 추가하고 리플리카 셋에 다중 다큐먼트 트랜잭션 지원을 통합
+
+For details regarding transactions in MongoDB, see the Transactions page.
+
+In most cases, multi-document transaction incurs a greater performance cost over single document writes, and the availability of multi-document transactions should not be a replacement for effective schema design.
+
+* 대부분의 경우, 다중 다큐먼트 트랜잭션은 단일 다큐먼트 쓰기보다 더 많은 비용이 발생하며 다중 다큐먼트 트랜잭션의 가용성이 효과적인 스키마 디자인을 대신해서는 안된다.
+* 즉 다중 다큐먼트 트랜잭션에 의존하지 말고 효과적으로 스키마 디자인을 해서 다중 다큐먼트 트랜잭션을 줄여라?
+
+  For many scenarios, the denormalized data model \(embedded documents and arrays\) will continue to be optimal for your data and use cases. 
+
+  * 많은 시나리오에서 비정규화된 데이터 모델\(임베디드 다큐먼트와 배열\)은 데이터와  사용 케이스에 대해 최적화를 제공할 것이다.
+
+That is, for many scenarios, modeling your data appropriately will minimize the need for multi-document transactions.
+
+For additional transactions usage considerations \(such as runtime limit and oplog size limit\), see also Production Considerations.
+
