@@ -1,6 +1,8 @@
 # 데이터 모델링 문서 번역
 
-Data Modeling Introduction 데이터 모델링 소개 소개 The key challenge in data modeling is balancing the needs of the application, the performance characteristics of the database engine, and the data retrieval patterns.
+Data Modeling Introduction 데이터 모델링 소개 소개
+
+ The key challenge in data modeling is balancing the needs of the application, the performance characteristics of the database engine, and the data retrieval patterns.
 
 * 데이터 모델링의 주요 핵심은 어플리케이션의 요구사항과 데이터베이스 엔진 특유의 성능과 데이터 검색 패턴의 균형을 맞추는 것이다.
 
@@ -8,7 +10,9 @@ Data Modeling Introduction 데이터 모델링 소개 소개 The key challenge i
 
 * 데이터 모델을 설계할때는 데이터 자체의 고유 구조뿐만 아니라 어플리케이션 데이터의 사용 \(쿼리, 업데이트 및 데이터 처리\) 를 고려해야 한다.
 
-Flexible Schema \(유연한 스키마\) Unlike SQL databases, where you must determine and declare a table’s schema before inserting data, MongoDB’s collections, by default, does not require its documents to have the same schema. That is:
+Flexible Schema \(유연한 스키마\)
+
+ Unlike SQL databases, where you must determine and declare a table’s schema before inserting data, MongoDB’s collections, by default, does not require its documents to have the same schema. That is:
 
 * 데이터를 인서트 하기전 테이블 스키마를 결졍하고 선언해야하는 sql 데이터베이스와는 다르게 몽고db 컬렉션은 기본적으로 문서에 동일한 스키마를 필요로 하지 않는다.
 
