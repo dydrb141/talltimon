@@ -4,7 +4,7 @@ description: 생성자 레퍼런스를 사용하면서 몰랐던 사실.
 
 # 생성자 레퍼런스를 사용하면서 몰랐던 사실.
 
-
+ 
 
 ```java
 ILLEGAL_ARGUMENT(IllegalArgumentException::new),
