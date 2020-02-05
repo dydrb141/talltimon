@@ -84,8 +84,18 @@ ThreadLocal<String> threadLocal = ThreadLocal.withInitial(new Supplier<String>()
 });
 ```
 
+람다를 사용해서 구현할 수도 있다.
+
+```java
+ThreadLocal threadLocal = ThreadLocal.withInitial(
+        () -> { return String.valueOf(System.currentTimeMillis()); } );
+```
+
+```java
+ThreadLocal threadLocal3 = ThreadLocal.withInitial(
+        () -> String.valueOf(System.currentTimeMillis()) );
+```
+
+  
 
 
-
-
-* 
