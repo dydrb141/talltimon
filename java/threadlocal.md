@@ -97,5 +97,7 @@ ThreadLocal threadLocal3 = ThreadLocal.withInitial(
 ```
 
   
+참고 URL : [http://tutorials.jenkov.com/java-concurrency/threadlocal.html](http://tutorials.jenkov.com/java-concurrency/threadlocal.html)
+
 
 
